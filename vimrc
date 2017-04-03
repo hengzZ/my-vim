@@ -185,6 +185,9 @@ filetype plugin indent on    " required
 let mapleader=","
 noremap \ ,
 
+" 修改文件编码为 utf-8
+scriptencoding utf-8
+
 
 ""[启动配置项]_____________________________________________________________________________________________________________________________
 "
@@ -210,7 +213,7 @@ noremap <Right> <Nop>
 " paste选项的启用、关闭，用于系统剪贴板交互
 set pastetoggle=<f5>
 
-" 屏幕重绘
+" 屏幕重绘,当前行处于屏幕中间
 noremap <Leader>n nzz
 noremap <Leader>N Nzz
 " <C-l>清除并重绘屏幕，增添暂时关闭查找高亮功能
@@ -390,31 +393,40 @@ map <Leader>ev :vsp %%
 map <Leader>et :tabe %%
 
 
-"[Tag相关配置]___________________________________________________________________________________________________________________________
+"[Tag相关配置]____________________________________________________________________________________________________________________________
 
+" 开启、关闭标签栏
 nmap <F4> :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_width=30
 let g:tagbar_ctags_bin='/usr/bin/ctags-exuberant'
 
+"[其他]___________________________________________________________________________________________________________________________________
+
+" vim: nowrap fdm=marker
+" 在vim窗口的右下角显示一个完整命令已经完成的部分
+set showcmd
+" 用J命令合并两行时用一个空格来分隔
+set nojoinspaces
+" 取消根据tag自动补全
+set complete-=t
+" 高亮显示TAB和EOL
+" set listchars=tab:▸\ ,eol:¬
+" 代码折叠配置，打开文件不折叠代码
+set foldlevelstart=99
+" vim文件备份，不使用交换文件
+set noswapfile
+" 使鼠标在普通模式和可视模式下工作
+if has('mouse')
+	set mouse=nv
+endif
+" vimdiff设置
+set diffopt=filler,vertical
+" 允许缓冲区在未保存的情况下切换
+set hidden
 
 "[vim-dotfiles's confgure]________________________________________________________________________________________________________________
 
-" vim: nowrap fdm=marker
-"scriptencoding utf-8
-"
-"set showcmd
-"set nojoinspaces
-"set complete-=t
-"" set listchars=tab:▸\ ,eol:¬
-"set foldlevelstart=99
-"set noswapfile
-"if has('mouse')
-"	set mouse=nv
-"endif
-"set diffopt=filler,vertical
-"set ruler
-"
 "" Define a group for autocommands
 "augroup vimrc
 "  autocmd!
@@ -439,13 +451,6 @@ let g:tagbar_ctags_bin='/usr/bin/ctags-exuberant'
 "  let g:pandoc_pipeline .= ' | pandoc --from=markdown --to=html'
 "  autocmd vimrc FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
 "endif
-"
-"" Colorscheme
-""set termguicolors
-""set background=dark
-""silent! colorscheme solarized8_light
-"
-"set hidden
 "
 "" Plugin configuration {{{1
 "" netrw.vim {{{2
@@ -495,19 +500,6 @@ let g:tagbar_ctags_bin='/usr/bin/ctags-exuberant'
 "" let g:markdown_fenced_languages = ['ruby', 'javascript']
 "" to debug, run :verbose set foldmethod?
 ""
-"" Solarized8 {{{2
-"nnoremap  <leader>B :<c-u>exe "colors" (g:colors_name =~# "dark"
-"      \ ? substitute(g:colors_name, 'dark', 'light', '')
-"      \ : substitute(g:colors_name, 'light', 'dark', '')
-"      \ )<cr>
-"
-"function! Solarized8Contrast(delta)
-"  let l:schemes = map(['_low', '_flat', '', '_high'], '"solarized8_".(&background).v:val')
-"  exe 'colors' l:schemes[((a:delta+index(l:schemes, g:colors_name)) % 4 + 4) % 4]
-"endfunction
-"
-"nmap <leader>- :<c-u>call Solarized8Contrast(-v:count1)<cr>
-"nmap <leader>+ :<c-u>call Solarized8Contrast(+v:count1)<cr>
 "" Ctlr-P {{{2
 "let g:ctrlp_jump_to_buffer = 0
 "let g:ctrlp_working_path_mode = 0
@@ -529,12 +521,6 @@ let g:tagbar_ctags_bin='/usr/bin/ctags-exuberant'
 "command! -nargs=0 -bang QA qall!
 "" File opening {{{2
 "cnoremap <expr> %%  getcmdtype() == ':' ? fnameescape(expand('%:h')).'/' : '%%'
-"
-"" [打开当前目录]
-"map <leader>ew :e %%
-"map <leader>es :sp %%
-"map <leader>ev :vsp %%
-"map <leader>et :tabe %%
 "
 "" Prompt to open file with same name, different extension
 "map <leader>er :e <C-R>=expand("%:r")."."<CR>
