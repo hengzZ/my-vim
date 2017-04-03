@@ -384,13 +384,13 @@ set complete+=k
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/':'%%'
 
 " [打开当前目录]
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
+map <Leader>ew :e %%
+map <Leader>es :sp %%
+map <Leader>ev :vsp %%
+map <Leader>et :tabe %%
 
 
-"[Tag相关配置]____________________________________________________________________________________________________________________________
+"[Tag相关配置]___________________________________________________________________________________________________________________________
 
 nmap <F4> :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/bin/ctags'
