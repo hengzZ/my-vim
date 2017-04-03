@@ -403,25 +403,40 @@ let g:tagbar_ctags_bin='/usr/bin/ctags-exuberant'
 
 "[其他]___________________________________________________________________________________________________________________________________
 
-" vim: nowrap fdm=marker
+" fdm (foldmethod) 代码折叠方式
+" manual 手工定义折叠         	indent 更多的缩进表示更高级别的折叠     expr    用表达式来定义折叠         
+" syntax 用语法高亮来定义折叠    diff   对没有更改的文本进行折叠         marker  对文中的标志折叠
+" set fdm=marker
+
+" 不自动换行
+" set nowrap
+
 " 在vim窗口的右下角显示一个完整命令已经完成的部分
 set showcmd
+
 " 用J命令合并两行时用一个空格来分隔
 set nojoinspaces
+
 " 取消根据tag自动补全
 set complete-=t
+
 " 高亮显示TAB和EOL
 " set listchars=tab:▸\ ,eol:¬
+
 " 代码折叠配置，打开文件不折叠代码
 set foldlevelstart=99
+
 " vim文件备份，不使用交换文件
 set noswapfile
+
 " 使鼠标在普通模式和可视模式下工作
 if has('mouse')
 	set mouse=nv
 endif
+
 " vimdiff设置
 set diffopt=filler,vertical
+
 " 允许缓冲区在未保存的情况下切换
 set hidden
 
@@ -451,7 +466,7 @@ set hidden
 "  let g:pandoc_pipeline .= ' | pandoc --from=markdown --to=html'
 "  autocmd vimrc FileType html setlocal formatexpr=FormatprgLocal(pandoc_pipeline)
 "endif
-"
+
 "" Plugin configuration {{{1
 "" netrw.vim {{{2
 "let g:netrw_banner=0
@@ -468,7 +483,7 @@ set hidden
 ""   let g:neomake_info_sign    = { 'text': emoji#for('8ball') }
 ""   let g:neomake_message_sign = { 'text': emoji#for('pencil2') }
 "" endif
-"
+
 "" syntastic {{{2
 "let g:syntastic_mode_map = {
 "      \ 'mode': 'passive',
@@ -483,7 +498,7 @@ set hidden
 "let g:syntastic_ruby_checkers=['bx rubocop', 'mri']
 "nnoremap ZS :SyntasticCheck<CR>
 "nnoremap ZT :SyntasticToggle<CR>
-"
+
 "" Vim-ruby {{{2
 "" let ruby_fold=1
 "" Vim-rspec {{{2
@@ -492,6 +507,7 @@ set hidden
 "map <Leader>l :w<bar>:call RunLastSpec()<CR>
 "map <Leader>a :w<bar>:call RunAllSpecs()<CR>
 "let g:rspec_command = 'Dispatch rspec {spec}'
+
 "" Markdown {{{2
 "let g:markdown_fenced_languages = ['ruby', 'javascript']
 "" FIXME:
@@ -499,12 +515,12 @@ set hidden
 "" let ruby_fold=1
 "" let g:markdown_fenced_languages = ['ruby', 'javascript']
 "" to debug, run :verbose set foldmethod?
-""
+
 "" Ctlr-P {{{2
 "let g:ctrlp_jump_to_buffer = 0
 "let g:ctrlp_working_path_mode = 0
 "let g:ctrlp_user_command = 'find %s -type f'
-"
+
 "" Denite {{{2
 "" vim/after/plugin/denite.vim
 "" Ragel {{{2
