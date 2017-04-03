@@ -33,7 +33,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 " ( configure from https://github.com/nelstrom/dotfiles/blob/master/bundles.vim )
 " General enhancements
+" easily search for, substitute, and abbreviate multiple variants of a word
 Plugin 'tpope/vim-abolish'
+" Unicode character metadata
 Plugin 'tpope/vim-characterize'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
@@ -136,31 +138,54 @@ Plugin 'kana/vim-smartinput'
 Plugin 'nelstrom/vim-subrip'
 
 " Others for C++
+" C++新标准语法高亮支持 C++11/14
 Plugin 'octol/vim-cpp-enhanced-highlight'
+" 将相同缩进的代码关联
 Plugin 'nathanaelkane/vim-indent-guides'
+" 基于标签的标识符列表插件，侧边子窗口显示标识符
 Plugin 'majutsushi/tagbar'
 
 ""
+" 状态栏主题风格多样化支持
 "Plugin 'Lokaltog/vim-powerline'
+" .cpp 与 .h 文件间切换
 "Plugin 'derekwyatt/vim-fswitch'
+" 让vim书签可视化的插件,mark可视化。类似VS断点显示。（:echo has('signs') 查看是否支持signs功能）
 "Plugin 'kshenoy/vim-signature'
+" 让书签行高亮，vim-signature 的进一步可视化增强
 "Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
+" 周期性对工程自动生成标签文件
 "Plugin 'vim-scripts/indexer.tar.gz'
+" indexer依赖两个插件DfrankUtil、vimprj
 "Plugin 'vim-scripts/DfrankUtil'
 "Plugin 'vim-scripts/vimprj'
+" 对grep、ack的增强，查找关键字，并同上下文一起显示。（go to references）
 "Plugin 'dyng/ctrlsf.vim'
+" 多个分散匹配项的快捷替换支持
 "Plugin 'terryma/vim-multiple-cursors'
+" 快速开、关注释
 "Plugin 'scrooloose/nerdcommenter'
+" ASCII art 风格的注释
 "Plugin 'vim-scripts/DrawIt'
+" 模板补全，加速代码开发
 "Plugin 'SirVer/ultisnips'
+" 超智能自动补全
 "Plugin 'Valloric/YouCompleteMe'
+" 根据类声明自动生成类实现的代码框架,依赖vim-fswitch.
 "Plugin 'derekwyatt/vim-protodef'
+" 工程文件浏览
 "Plugin 'scrooloose/nerdtree'
+" 多文档编辑（原始版本已停止更新）
 "Plugin 'fholgado/minibufexpl.vim'
+" 快速编辑结对符
 "Plugin 'gcmt/wildfire.vim'
+" 支持undo,编辑回撤
 "Plugin 'sjl/gundo.vim'
+" 快速移动光标
 "Plugin 'Lokaltog/vim-easymotion'
+" markdown即时预览
 "Plugin 'suan/vim-instant-markdown'
+" 中/英输入平滑切换，要求系统中使用的是fcitx输入法
 "Plugin 'lilydjwg/fcitx.vim'
 
 
