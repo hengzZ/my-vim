@@ -327,7 +327,7 @@ let g:indent_guides_guide_size=1
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
 " 基于缩进或语法进行代码折叠
-" 操作：za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
+" 操作<Leader>za，打开或关闭当前折叠<Leader>zM，关闭所有折叠<Leader>zR，打开所有折叠
 "set foldmethod=indent
 set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
@@ -336,7 +336,7 @@ set nofoldenable
 " 接口与实现快速切换, 插件vim-fswitch
 
 " vim 内置的 man.vim 插件可以查看已安装的 man
-" 启用:Man命令查看各类man信息
+" 启用:Man命令查看各类man信息, 
 source $VIMRUNTIME/ftplugin/man.vim
 " 定义:Man命令查看各类man信息的快捷键
 nmap <Leader>man :Man 3 <cword><CR>
@@ -354,10 +354,16 @@ set history=5000
 set complete+=k
 
 
-"[命令行模式下相关配置]___________________________________________________________________________________________________________________
+"[命令行模式下相关配置]__________________________________________________________________________________________________________________
 
 " %%轻松展开当前文件所在的目录
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/':'%%'
+
+" [打开当前目录]
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
 
 
 "[Tag相关配置]____________________________________________________________________________________________________________________________
