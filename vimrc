@@ -416,6 +416,7 @@ map <Leader>ew :e %%
 map <Leader>es :sp %%
 map <Leader>ev :vsp %%
 map <Leader>et :tabe %%
+map <Leader>E  :Explore
 
 
 "[Tag相关配置]____________________________________________________________________________________________________________________________
