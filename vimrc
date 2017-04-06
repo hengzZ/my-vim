@@ -240,6 +240,10 @@ endif
 "noremap <Left> <Nop>
 "noremap <Right> <Nop>
 
+
+" 将tab替换为空格
+"nmap tt :%s/\t/    /g<CR>
+
 " shift the tab pages
 map <S-Left> :tabp<CR>
 map <S-Right> :tabn<CR>
