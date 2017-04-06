@@ -230,7 +230,11 @@ scriptencoding utf-8
 if version >= 603
     set helplang=cn
     set encoding=utf-8
+<<<<<<< HEAD
 end
+=======
+endif
+>>>>>>> 93bf06121f85bd3ed3b9546881701838ce51dc95
 
 "[自定义快捷键]___________________________________________________________________________________________________________________________
 
@@ -248,6 +252,14 @@ map <S-Right> :tabn<CR>
 "map! <C-O> <C-Y>
 imap <C-k> <C-y>
 imap <C-j> <Esc>
+
+" 补全确认，退出插入模式
+imap <C-k> <C-y>
+imap <C-j> <ESC>
+
+" 切换 tab 页
+map <S-Left>  :tabp<CR>
+map <S-Right> :tabn<CR>
 
 " paste选项的启用、关闭，用于系统剪贴板交互
 set pastetoggle=<f5>
@@ -471,7 +483,8 @@ set noswapfile
 
 " 使鼠标在普通模式和可视模式下工作
 if has('mouse')
-	set mouse=nv
+	"set mouse=nv
+	set mouse=a
 endif
 
 " vimdiff设置
