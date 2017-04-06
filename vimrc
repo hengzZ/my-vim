@@ -2,8 +2,8 @@
 " Second, Read the document on https://github.com/VundleVim/Vundle.vim
 " Configure Plugins:
 
-"   set nocompatible              " be iMproved, required
-"   filetype off                  " required
+"set nocompatible              " be iMproved, required
+"filetype off                  " required
 
 "[启动配置项]_____________________________________________________________________________________________________________________________
 " 使用Vundle安装插件时，注释掉“启动配置项”内容
@@ -59,7 +59,7 @@ if !has('nvim')
   Plugin 'tpope/vim-sensible'
 endif
 
-Plugin 'machakann/vim-highlightedyank'
+"Plugin 'machakann/vim-highlightedyank'
 Plugin 'leafo/moonscript-vim'
 
 " Pluginin 'dsawardekar/portkey'
@@ -226,14 +226,28 @@ scriptencoding utf-8
 "" 让配置变更立即生效
 "autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
+" 显示中文帮助
+if version >= 603
+    set helplang=cn
+    set encoding=utf-8
+end
 
 "[自定义快捷键]___________________________________________________________________________________________________________________________
 
 " 用于改掉使用光标键的习惯
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+"noremap <Up> <Nop>
+"noremap <Down> <Nop>
+"noremap <Left> <Nop>
+"noremap <Right> <Nop>
+
+" shift the tab pages
+map <S-Left> :tabp<CR>
+map <S-Right> :tabn<CR>
+
+" 用于补全确认
+"map! <C-O> <C-Y>
+imap <C-k> <C-y>
+imap <C-j> <Esc>
 
 " paste选项的启用、关闭，用于系统剪贴板交互
 set pastetoggle=<f5>
@@ -416,7 +430,7 @@ map <Leader>ew :e %%
 map <Leader>es :sp %%
 map <Leader>ev :vsp %%
 map <Leader>et :tabe %%
-map <Leader>E  :Explore
+map <Leader>E  :Explore<CR>
 
 
 "[Tag相关配置]____________________________________________________________________________________________________________________________
