@@ -61,4 +61,4 @@ if has("autocmd")
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 endif
 
-"[]
+" [Tidying whitespace]
