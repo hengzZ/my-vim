@@ -16,7 +16,9 @@ filetype on
 filetype plugin on
 
 " 让配置变更立即生效
-autocmd BufWritePost $MYVIMRC source $MYVIMRC
+if has("autocmd")
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+endif
 "----------------------------------------------------------------------------------------------------------------------------------------
 
 " set the runtime path to include Vundle and initialize
@@ -89,10 +91,6 @@ Plugin 'b4winckler/vim-angry'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/phd'
-" Plugin 'lifepillar/vim-solarized8'
-" Plugin 'morhetz/gruvbox'
-" Plugin 'nelstrom/vim-mac-classic-theme'
-" Plugin 'nelstrom/vim-blackboard'
 
 " Ruby enhancements
 " Plugin 'tpope/vim-bundler'
@@ -236,6 +234,12 @@ endif
 " [vim 编辑理念（范式）]
 " undo, redo and repeat (编辑按步存档)
 " => insert 和 <ESC> 由来
+" u 	undo the last change
+" ctrl-r 	redo one change which was undone
+" g- 	go to older text state
+" g+ 	go to newer text state
+" :earlier {N}s 	Go the the older text state about {N} seconds before
+
 
 "[自定义快捷键]__________________________________________________________________________________________________________________________
 
@@ -343,6 +347,13 @@ map <C-0> :tablast<CR>
 " jumps
 " ctrl-O	ctrl-I
 
+" [与命令行窗口协同工作]
+" 使用命令行窗口优化搜索模式
+" ctrl-p 	Show previous historical command/search
+" ctrl-n 	Show next historical command/search
+" ctrl-f 	Switch from commandline mode to the commandline window
+" q/ 	Open the commandline window with history of searches
+" q: 	Open the commandline window with history of commands
 
 " 定义快捷键在结对符之间跳转
 nmap <Leader>M %
@@ -378,7 +389,11 @@ map <Leader>E  :Explore<CR>
 " 工程目录下的操作
 " %	创建新文件
 " d	创建新文件夹
+" R	重命名文件、文件夹
+" D	删除文件、文件夹
 
+" 快速打开 .vimrc
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
 "[UI相关配置]____________________________________________________________________________________________________________________________
 
@@ -470,12 +485,24 @@ let g:indent_guides_guide_size=1
 :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
 " [代码折叠]
-" 基于缩进或语法进行代码折叠
 " 操作<Leader>za，打开或关闭当前折叠<Leader>zM，关闭所有折叠<Leader>zR，打开所有折叠
+" 基于缩进或语法进行代码折叠
 "set foldmethod=indent
 set foldmethod=syntax
 " 启动 vim 时关闭折叠代码
 set nofoldenable
+" [折叠命令]
+" zi 	switch folding on or off
+" za 	toggle current fold open/closed
+" zc 	close current fold
+" zR 	open all folds
+" zM 	close all folds
+" zv 	expand folds to reveal cursor
+" 
+" zj 	move down to top of next fold
+" zk 	move up to bottom of previous fold
+" [编写自定义折叠表达式]
+
 
 " 接口与实现快速切换, 插件vim-fswitch
 
@@ -664,3 +691,54 @@ nmap _= :call Preserve("normal gg=G")<CR>
 " nmap <D-]> >>
 " vmap <D-[> <gv
 " vmap <D-]> >gv
+
+" 保存光标位置和高亮语法
+if has("autocmd")
+  " Enable filetype detection
+  filetype plugin indent on
+  " Restore cursor position
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+endif
+if &t_Co > 2 || has("gui_running")
+  " Enable syntax highlighting
+  syntax on
+endif
+
+" [Text bubble with unimpaired.vim]
+" [e  -  Exchange the current line with [count] lines above it.
+" ]e  -  Exchange the current line with [count] lines below it.
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+" [Visually select the text that was last edited/pasted]
+" :help gv - reselect last visual selection
+nmap gV `[v`]
+
+" [Aligning text with Tabular.vim]
+" 文本对齐
+if exists(":Tabularize")
+      nmap <Leader>a= :Tabularize /=<CR>
+      vmap <Leader>a= :Tabularize /=<CR>
+      nmap <Leader>a: :Tabularize /:\zs<CR>
+      vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+" | 自动对齐
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
