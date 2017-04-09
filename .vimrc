@@ -315,17 +315,8 @@ nmap <Leader>Q :qa!<CR>
 " gT 	Move to previous tab
 " #gt 	Move to tab number #
 " for linux and windows users (using the control key)
-map <C-S-]> gt
-map <C-S-[> gT
-map <C-1> 1gt
-map <C-2> 2gt
-map <C-3> 3gt
-map <C-4> 4gt
-map <C-5> 5gt
-map <C-6> 6gt
-map <C-7> 7gt
-map <C-8> 8gt
-map <C-9> 9gt
+map <S-Right> gt
+map <S-Left>  gT
 map <C-0> :tablast<CR>
 " 重排布标签页
 " :tabmove 	Move current tab to the end
@@ -458,7 +449,7 @@ set cursorline
 " set cursorcolumn
 
 " 设置 gvim 显示字体
-set guifont=Consolas:h12
+set guifont=Consolas\ 12
 
 
 "[插入模式相关配置]______________________________________________________________________________________________________________________
