@@ -92,32 +92,10 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'vim-scripts/phd'
 
-" Ruby enhancements
-" Plugin 'tpope/vim-bundler'
-" Plugin 'tpope/vim-endwise'
-" Plugin 'tpope/vim-rails'
-" Plugin 'tpope/vim-rake'
-" Plugin 'vim-ruby/vim-ruby'
-" Plugin 'thoughtbot/vim-rspec'
-
 " Markdown
 Plugin 'tpope/vim-markdown'
 Plugin 'nelstrom/vim-markdown-folding'
 Plugin 'junegunn/vim-emoji'
-
-" Riml
-" Plugin 'dsawardekar/riml.vim'
-
-" Ember
-" Plugin 'mustache/vim-mustache-handlebars'
-" Plugin 'AndrewRadev/vim-mustache-handlebars'
-" Plugin 'AndrewRadev/ember_tools.vim'
-
-" Haskell
-" Plugin 'urso/haskell_syntax.vim'
-
-" PML
-" Plugin 'nelstrom/vim-pml'
 
 " Neovim
 if has('nvim')
@@ -639,12 +617,15 @@ if has("autocmd")
   " Syntax of these languages is fussy over tabs Vs spaces
   autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
   autocmd FileType python setlocal ts=4 sts=4 sw=4 noexpandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
   
   autocmd FileType c	setlocal ts=4 sts=4 sw=4 expandtab
   autocmd FileType cpp  setlocal ts=8 sts=8 sw=8 expandtab
 
   " Customisations based on house-style (arbitrary)
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
 
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
