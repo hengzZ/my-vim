@@ -231,6 +231,7 @@ endif
 " 补全确认，退出插入模式
 imap <C-k> <C-y>
 imap <C-j> <ESC>
+imap <C-f> <C-x><C-f>
 
 " paste选项的启用、关闭，用于系统剪贴板交互
 set pastetoggle=<f5>
