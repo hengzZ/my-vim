@@ -28,3 +28,8 @@ References:  </br>
 > endif
 * 不带参数打开vim,输入命令 :PluginInstall
 
+## Change the Cap and Ctrl on Ubuntu ##
+add the below command to ~/.bashrc
+```
+setxkbmap -option "ctrl:swapcaps"
+```
